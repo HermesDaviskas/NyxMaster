@@ -1,15 +1,14 @@
 #include <Arduino.h>
+#include <StateToggle.h>
+
+StateToggle inBuildLED(2);
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
   Serial.println("Booted...");
-  pinMode(2, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(2, HIGH);  // Turn LED on
-  delay(500);
-  digitalWrite(2, LOW);   // Turn LED off
-  delay(500);
+  inBuildLED.toggle();
+  delay(1500);
 }

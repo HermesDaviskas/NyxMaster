@@ -1,0 +1,17 @@
+{
+  "name": "StateToggle",
+  "version": "1.0.0",
+  "description": "A simple library to reverse the state of a GPIO pin on ESP32",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/PinReverser.git"
+  },
+  "authors": [
+    {
+      "name": "Your Name",
+      "email": "your@email.com"
+    }
+  ],
+  "frameworks": "arduino",
+  "platforms": "espressif32"
+}

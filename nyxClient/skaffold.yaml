@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta3
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+    - image: hermesdaviskas/nyxmaster-client
+      context: .
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.py"
+            dest: .
+deploy:
+  kubectl:
+    manifests:
+      - infra/k8s/*
