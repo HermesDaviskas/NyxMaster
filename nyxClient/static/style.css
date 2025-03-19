@@ -1,0 +1,18 @@
+/* static/style.css */
+
+body {
+  background-color: #2b0000; /* Red background */
+  color: #d3d3d3; /* Light gray text */
+  font-family: Arial, sans-serif;
+}
+
+.ui-label {
+  color: #ff4d4d; /* Red text */
+}
+
+.ui-button,
+.ui-input,
+.ui-card {
+  background-color: #3a0000; /* Darker red for buttons and inputs */
+  color: #d3d3d3; /* Light gray text */
+}

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nyxmaster-client-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nyxmaster-client
+  template:
+    metadata:
+      labels:
+        app: nyxmaster-client
+    spec:
+      containers:
+        - name: nyxmaster-client
+          image: hermesdaviskas/nyxmaster-client
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nyxmaster-client-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: nyxmaster-client
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
