@@ -3,6 +3,7 @@ from components.webpage.header.header import createHeader
 from utilities.themeSelector.themeSelector import nightTheme
 from utilities.fullScreenToggle.fullScreenToggle import showInFullScreen
 from components.telescope.horAlignment.horAlignment import draw_compass
+from components.telescope.infoGauge.infoGauge import draw_gauge
 
 @ui.page('/')
 def index():
@@ -12,6 +13,7 @@ def index():
     showInFullScreen(False)
 
     createHeader("NYX Master", "Automatic Telescope Motion Control & Image Analysis")
+    draw_gauge()
     draw_compass()
 
 
