@@ -7,7 +7,7 @@ def nightTheme(mode: bool):
     if not mode:  # Day mode
         ui.colors()
         dark.disable()
-        ui.run_javascript("document.body.style.color = 'black';")  # Ensure text is black
+        ui.run_javascript("document.body.style.color = '#5898d4';")  # Ensure text is black
         ui.run_javascript("document.body.style.backgroundColor = '#FFFFFF';")
 
     else:  # Night mode

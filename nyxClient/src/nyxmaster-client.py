@@ -3,8 +3,10 @@ from components.webpage.header.header import createHeader
 from utilities.themeSelector.themeSelector import nightTheme
 from utilities.fullScreenToggle.fullScreenToggle import showInFullScreen
 from components.gauges.gps.gps import draw_gps
-from components.gauges.horAlignment.horAlignment import draw_horAlignment
+from components.gauges.mountAlignment.mountAlignment import draw_mountAlignment
 from components.gauges._html_components.component_structure import Header
+from components.gauges.orientation.orientation import draw_orientation
+
 
 @ui.page('/')
 def index():
@@ -13,8 +15,13 @@ def index():
     nightTheme(True)
     showInFullScreen(False)
     createHeader("NYX Master", "Automatic Telescope Motion Control & Image Analysis")
-    draw_gps()
-    draw_horAlignment()
+    with ui.row():
+        with ui.column():
+            draw_gps()
+            draw_mountAlignment()
+        with ui.column():
+            draw_orientation()
+
 
 
 ui.run()

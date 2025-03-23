@@ -6,7 +6,7 @@ def Container(width):
 
 def Header(icon, title):
     with ui.row().style('width: 100%; align-items: center;'):
-        ui.icon(f'{icon}').classes('text-xl')
+        ui.icon(icon).classes('text-xl')
         ui.label(f'{title}')
         ui.space()
         ui.separator().style('background-color: var(--q-primary); height: 1px; width: 100%')

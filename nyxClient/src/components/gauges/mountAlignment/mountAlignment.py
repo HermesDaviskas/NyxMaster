@@ -4,14 +4,14 @@ import random
 import asyncio
 import math
 
-def draw_horAlignment():
+def draw_mountAlignment():
 
     with Container("280px"):
 
-        Header('vertical_distribute', 'HOR ALIGNMENT')
+        Header('vertical_distribute', 'MOUNT ALIGNMENT')
 
         with Content():
-            compass = ui.interactive_image(size=(800, 800)).classes('w-64 rounded-2xl').style('border: none; background-color: transparent; padding: 15px')
+            compass = ui.interactive_image(size=(800, 800)).classes('w-64').style('border: none; background-color: transparent; padding: 15px')
             compass.set_content(_draw_crosshair(0, 0))
 
             with ui.row().style('width: 100%; justify-content: left; display: grid; grid-template-columns: 1fr 1fr;'):
@@ -59,9 +59,6 @@ def draw_horAlignment():
 # Function to generate the SVG for crosshair
 def _draw_crosshair(x_tilt, y_tilt):
     
-    def _draw_center():
-        return f'<circle cx="400" cy="400" r="50" fill="none" stroke="var(--q-primary)" stroke-width="10"/>'
-    
     def _draw_cross():
         return '''
             <line x1="20" y1="400" x2="780" y2="400" stroke-width="2"/>
@@ -73,7 +70,7 @@ def _draw_crosshair(x_tilt, y_tilt):
         x_angle_rad = math.radians(x_angle)
 
         # Length of the line (fixed to 400px)
-        length = 400
+        length = 320
 
         # Calculate the end coordinates of the line using trigonometry
         x_start = 400 - length * math.cos(x_angle_rad)
@@ -88,12 +85,13 @@ def _draw_crosshair(x_tilt, y_tilt):
         # Convert the angle to radians
         x_angle_rad = math.radians(x_angle + 90)
         x_angle_rad_minus = math.radians(x_angle - 90)
-        y_angle_rad = math.radians(y_angle)
 
         # Scale y_angle to determine length (400px at 10°, 0px at 0°)
         max_angle = 10
-        if (y_angle > max_angle): length = 400
-        else: length = (y_angle / max_angle) * 400
+        max_length = 330
+        length = (y_angle / max_angle) * max_length
+        length = abs(length)
+        if (length > max_length): length = max_length
         
 
         # Calculate the end coordinates of the line using trigonometry
@@ -104,16 +102,14 @@ def _draw_crosshair(x_tilt, y_tilt):
 
         # Return the line SVG element
         return (f'''
-                    <line x1="{x_start}" y1="{y_start}" x2="{x_end}" y2="{y_end}" stroke-width="10" stroke="var(--q-primary)"/>
-                    <circle cx="400" cy="400" r={abs(length)} fill="none" stroke="var(--q-primary)" stroke-width="1"/>
+                    <line x1="{x_start}" y1="{y_start}" x2="{x_end}" y2="{y_end}" stroke-width="0.1"/>
+                    <circle cx="400" cy="400" r="55" fill="var(background-color)" stroke-width="10"/>'
+                    <circle cx="{400}" cy="{y_end}" r="35" fill="var(background-color)" stroke-width="7"/>'
+                    <circle cx="{400}" cy="{y_start}" r="15" fill="var(--q-primary)" stroke-width="7"/>'
                 ''')
-
-
-
 
     return f'''
         <svg width="800" height="800" style="stroke: var(--q-primary);">
-            {_draw_center()}
             {_draw_cross()}
             {_draw_line_xx(x_tilt)}
             {_draw_line_yy(x_tilt, y_tilt)}
