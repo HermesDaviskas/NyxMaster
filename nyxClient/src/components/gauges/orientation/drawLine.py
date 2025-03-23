@@ -28,7 +28,7 @@ def draw_line(x, y, angle, length, label=None):
 
     # If a label is provided, calculate its position and alignment
     if label:
-        label_offset = 50
+        label_offset = 30
         x_label = x + (length + label_offset) * math.sin(radians)
         y_label = y - (length + label_offset) * math.cos(radians)
 

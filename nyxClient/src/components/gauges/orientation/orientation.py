@@ -63,12 +63,19 @@ def draw_orientation():
     with Container("280px"):
             Header("explore", 'TELESCOPE ORIENTATION')
             with Content():
+                heading = 10
                 canvas = ui.interactive_image(size=(800, 800))
                 canvas.classes('w-64')
                 canvas.style('border:none; background-color:transparent; padding:15px;')
-                canvas.set_content(_drawHeading(0, 0))
+                canvas.set_content(_drawHeading(0, heading))
+                with ui.column().classes("font-bold"):
+                    ui.label("Heading:")
+                ui.space()
+                with ui.column():
+                    sys_time = ui.label(heading)
             with Content():    
                 canvas = ui.interactive_image(size=(800, 800))
                 canvas.classes('w-64')
                 canvas.style('border:none; background-color:transparent; padding:15px;')
                 canvas.set_content(_drawAltitude(37.5))
+                ui.label("Altitude: ")
