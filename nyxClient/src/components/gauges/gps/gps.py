@@ -3,7 +3,7 @@ from .._html_components.component_structure import Container, Header, Content, F
 from datetime import datetime
 
 
-def draw_gps():
+def gps_data_ui():
 
     with Container():
 
