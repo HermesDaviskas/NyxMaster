@@ -18,11 +18,11 @@ def _drawHeading(mount_offset_deg, heading_deg):
             {draw_line(400, 400, 225 +mount_offset_deg, line_lth /2, "SW")}
             {draw_line(400, 400, 315 +mount_offset_deg, line_lth /2, "NW")}
             <circle cx="400" cy="400" r="{line_lth/2 -40}" stroke="var(--q-primary)" fill="none"/>
-            <circle cx="400" cy="400" r="190" fill stroke="var(--q-primary)" stroke-width="2"/>
+            <circle cx="400" cy="400" r="190" fill="var(--q-background)" stroke="var(--q-primary)" stroke-width="2"/>
         '''
     def _draw_indicator(heading_deg):
         return f'''
-            <circle cx="400" cy="400" r="20" fill="var(background-color)" stroke="var(--q-primary)" stroke-width="8"/>
+            <circle cx="400" cy="400" r="20" fill="var(--q-background)" stroke="var(--q-primary)" stroke-width="8"/>
             <g transform="rotate({heading_deg}, 400, 400)"> <polygon points="400, 250, 350, 350, 450, 350" fill="var(--q-primary)"/></g>
         '''
     return f'''
@@ -40,11 +40,11 @@ def _drawAltitude(alt_deg):
         return f'''
             {lines}
             <circle cx="750" cy="750" r="{line_lth -40}" stroke="var(--q-primary)" stroke-width="0" fill="none"/>
-            <circle cx="750" cy="750" r="{190}" fill stroke="var(--q-primary)" stroke-width="0"/>
+            <circle cx="750" cy="750" r="{190}" fill="var(--q-background)" stroke="var(--q-primary)" stroke-width="0"/>
         '''
     def _draw_indicator(alt_deg):
         return f'''
-            <circle cx="750" cy="750" r="20" fill="var(background-color)" stroke="var(--q-primary)" stroke-width="8"/>
+            <circle cx="750" cy="750" r="20" fill="var(--q-background)" stroke="var(--q-primary)" stroke-width="8"/>
             <g transform="rotate({alt_deg -90}, 750, 750)"> <polygon points="750, 600, 700, 700, 800, 700" fill="var(--q-primary)"/></g>
         '''
     
@@ -88,7 +88,7 @@ def draw_orientation():
                     ui.label("deg")
 
         with Footer():
-            loop_chip = ui.chip('Activate magnetometer', selectable=True)
+            loop_chip = ui.chip('Stream data', selectable=True)
             loop_chip.props('outline square').style("margin: 0; cursor: pointer; padding: 15px 10px; ")
             loop_chip.classes('rounded-lg')
             loop_chip.on_click(lambda: read_magnetometer(loop_chip.selected))

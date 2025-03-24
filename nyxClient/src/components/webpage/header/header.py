@@ -13,7 +13,7 @@ def createHeader(title: str, subtitle: str):
                 
             ui.space()
 
-            night_mode_switch = ui.switch('Night theme', value=True, on_change=lambda e: nightTheme(e.value)).style("color: var(--q-primary);")
+            night_mode_switch = ui.switch('Night theme', value=False, on_change=lambda e: nightTheme(e.value)).style("color: var(--q-primary);")
             fullscreen_switch = ui.switch('Full screen', value=False, on_change=lambda e: showInFullScreen(e.value)).style("color: var(--q-primary);")
 
         ui.separator().style("margin-bottom: 15px; background-color: var(--q-secondary)")

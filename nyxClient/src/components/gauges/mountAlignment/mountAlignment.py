@@ -21,16 +21,18 @@ def _draw_Gauge(x_tilt_deg, y_tilt_deg):
             </svg>
         '''
     def _draw_y_tilt_indicator(y_tilt_deg):
-        max_angle = 15
-        max_length = 360
-        length = min(((y_tilt_deg / max_angle) * max_length), max_length)
+        max_angle = 45
+        max_displacement = 360
+        displacement = min(((y_tilt_deg / max_angle) * max_displacement), max_displacement)
         return f'''
             <svg stroke-width="15" stroke="var(--q-primary)">
-                <circle cx="400" cy="400" r="{55}" fill="var(background-color)" stroke="var(--q-primary)" stroke-width="10"/>
-                <circle cx="400" cy="{400 +length}" r="{55 -21}" fill="var(background-color)" stroke-width="8"/>'
-                <circle cx="400" cy="{400 -length}" r="{55 -21 -21}" fill="var(--q-primary)" stroke-width="7"/>'
+                <circle cx="400" cy="400" r="55" fill="var(--q-background)" stroke="var(--q-primary)" stroke-width="10"/>
+                <circle cx="400" cy="{400 + displacement}" r="50" fill="var(--q-background)" stroke="none" stroke-width="0"/>
+                <circle cx="400" cy="{400 + displacement}" r="35" fill="var(--q-background)" stroke-width="8"/>
+                <circle cx="400" cy="{400 - displacement}" r="30" fill="var(--q-background)" stroke="none" stroke-width="0"/>
+                <circle cx="400" cy="{400 - displacement}" r="15" fill="var(--q-primary)" stroke-width="7"/>
             </svg>
-        '''   
+        '''  
     return f'''
         <svg>
             {_draw_Cross()}
@@ -64,7 +66,7 @@ def draw_mountAlignment():
                 with ui.column():
                     ui.label("deg")
         with Footer():
-            loop_chip = ui.chip('Activate magnetometer', selectable=True)
+            loop_chip = ui.chip('Stream data', selectable=True)
             loop_chip.props('outline square').style("margin: 0; cursor: pointer; padding: 15px 10px; ")
             loop_chip.classes('rounded-lg')
             loop_chip.on_click(lambda: read_magnetometer(loop_chip.selected))
@@ -78,8 +80,8 @@ def draw_mountAlignment():
         magnetometer_active = state
         while magnetometer_active:
             # Simulate magnetometer readings
-            x_tilt = random.uniform(-15, 15)
-            y_tilt = random.uniform(-15, 15)
+            x_tilt = random.uniform(-45, 45)
+            y_tilt = random.uniform(-45, 45)
 
             # Update the UI with new readings
             x_value.set_text(f'{x_tilt:.1f}')

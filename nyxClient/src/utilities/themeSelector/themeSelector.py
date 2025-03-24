@@ -1,12 +1,10 @@
 # themeSelector.py
 from nicegui import ui
 
-def nightTheme(mode: bool):
-    dark = ui.dark_mode()
-    
+def nightTheme(mode: bool):    
     if not mode:  # Day mode
         ui.colors()
-        dark.disable()
+        ui.colors(background='#FFFFFF')
         ui.run_javascript("document.body.style.color = '#5898d4';")  # Ensure text is black
         ui.run_javascript("document.body.style.backgroundColor = '#FFFFFF';")
 
@@ -23,6 +21,5 @@ def nightTheme(mode: bool):
             background='#000000',
             surface='#111111'
         )
-        dark.enable()
         ui.run_javascript("document.body.style.color = '#FF4444';")  # Ensure text is red
         ui.run_javascript("document.body.style.backgroundColor = '#000000';")
