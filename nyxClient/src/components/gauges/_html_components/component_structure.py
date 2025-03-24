@@ -1,18 +1,17 @@
 from nicegui import ui
 
-def Container(width):
-    return ui.row().classes('rounded-2xl justify-between') \
-        .style(f'border: solid 1px var(--q-primary); background-color: transparent; padding: 20px; gap: 35px; width:{width}')
+def Container():
+    return ui.element('div').classes('rounded-2xl h-full w-full justify-between') \
+        .style('border: solid 1px var(--q-primary); background-color: transparent; padding: 20px; display: flex; flex-direction: column; gap:30px')
 
 def Header(icon, title):
-    with ui.row().style('width: 100%; align-items: center;'):
+    with ui.element('div').classes('w-full flex items-center').style('gap: 15px'):
         ui.icon(icon).classes('text-xl')
         ui.label(f'{title}')
-        ui.space()
-        ui.separator().style('background-color: var(--q-primary); height: 1px; width: 100%')
+        ui.separator().classes('bg-primary w-full')
 
 def Content():
-    return ui.row().style('width: 100%; justify-content: center;')
+    return ui.element('div').classes('h-full w-full flex items-center justify-start').style('display: flex; flex-direction: column; gap: 10px;')
 
 def Footer():
-    return ui.row().style('width: 100%; justify-content: left; align-items: center;')
+    return ui.element('div').classes('w-full flex items-end justify-start')

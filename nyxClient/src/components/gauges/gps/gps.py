@@ -5,27 +5,27 @@ from datetime import datetime
 
 def draw_gps():
 
-    with Container("280px"):
+    with Container():
 
         Header('gps_fixed', 'GPS DATA')
 
         with Content():
-            with ui.column().classes("font-bold"):
-                ui.label("sys:")
-                ui.label("utc:")
-                ui.label("Lat:")
-                ui.label("Lon:")
-
-            ui.space()
-
-            with ui.column():
-                sys_time = ui.label(datetime.now().isoformat())
-                utc_time = ui.label("- -  :  - -")
-                lat_label = ui.label("- - N   - - E")
-                lon_label = ui.label("- - N   - - E")
+            with ui.row().classes('w-full'):
+                with ui.column().classes("font-bold"):
+                    ui.label("sys:")
+                    ui.label("utc:")
+                    ui.label("Lat:")
+                    ui.label("Lon:")
+                with ui.space():
+                    pass
+                with ui.column():
+                    sys_time = ui.label(datetime.now().isoformat())
+                    utc_time = ui.label("- -  :  - -")
+                    lat_label = ui.label("- - N   - - E")
+                    lon_label = ui.label("- - N   - - E")
         
         with Footer():
-            ui.chip('sync', icon='replay').props('outline square').style("margin: 0; cursor: pointer; padding: 15px 10px; ").classes('rounded-lg')
+            ui.chip('Collect data', icon='replay').props('outline square').style("margin: 0; cursor: pointer; padding: 15px 10px; ").classes('rounded-lg')
 
     def update_time():
         sys_time.set_text(datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"))
